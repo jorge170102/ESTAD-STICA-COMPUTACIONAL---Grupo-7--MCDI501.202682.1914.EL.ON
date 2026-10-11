@@ -1,11 +1,23 @@
-pandas
-numpy
-matplotlib
-seaborn
-scipy
-statsmodels
-scikit-learn
-jupyter
-ipykernel
-nbformat
-nbclient
+# Sumativa 1 — Estadística Computacional (MCDI501)
+# Grupo 7 — Universidad Andrés Bello
+# Entorno de referencia: CPython 3.14.x (notebook publicado: 3.14.8)
+# Versiones de NumPy y pandas verificadas en las salidas del notebook.
+# Las demás son versiones propuestas y requieren validación al instalar.
+
+# Procesamiento de datos
+numpy==2.5.3
+pandas==3.0.6
+
+# Estadística inferencial
+scipy==1.17.0
+
+# Visualización
+matplotlib==3.11.2
+seaborn==0.13.2
+
+# Jupyter / ejecución y exportación de notebooks
+ipykernel==7.3.0
+jupyterlab==4.6.4
+notebook==7.6.3
+nbconvert==7.17.1
+
