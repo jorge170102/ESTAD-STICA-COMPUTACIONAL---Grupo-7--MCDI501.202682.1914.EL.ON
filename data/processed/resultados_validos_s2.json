@@ -1,0 +1,548 @@
+{
+  "schema_version": "1.0",
+  "evaluacion": "Sumativa 2",
+  "equipo": "Grupo 7",
+  "procedencia": {
+    "repositorio": "https://github.com/jorge170102/ESTAD-STICA-COMPUTACIONAL---Grupo-7--MCDI501.202682.1914.EL.ON",
+    "commit_referencia_s1": "0c7ffaca4e45525ab434f6c9305128221e4ef1c4",
+    "commit_en_ejecucion": "0c7ffaca4e45525ab434f6c9305128221e4ef1c4",
+    "notebook_s1": "notebooks/sumativa_1.ipynb",
+    "datos": "data/processed/ecommerce_mcar.csv",
+    "sha256_datos_lf": "1a7f8a5c4da839e481ff2dc93e30c7f64205407a2bd62ae94be4265027ca0714",
+    "fecha_utc": "2026-10-17T00:31:03.932413+00:00",
+    "versiones": {
+      "Python": "3.14.7",
+      "NumPy": "2.5.4",
+      "pandas": "3.0.6",
+      "SciPy": "1.18.1",
+      "Matplotlib": "3.11.2"
+    },
+    "bootstrap_por_analisis": 10000,
+    "permutaciones": 10000,
+    "monte_carlo_por_escenario": 10000,
+    "lote": 50,
+    "semillas": {
+      "medias": [
+        101,
+        102,
+        103
+      ],
+      "permutacion": 201,
+      "correlaciones": [
+        301,
+        302,
+        303
+      ],
+      "lognormal": 401,
+      "gamma": 402,
+      "diferencia_bootstrap": 403,
+      "descuento_filtrado": 501,
+      "correlacion_filtrada": 502,
+      "escenario_inferior": 601,
+      "escenario_superior": 602
+    },
+    "confianza": 0.95,
+    "codificacion": {
+      "0": "a tiempo",
+      "1": "fuera de plazo"
+    },
+    "tratamiento_faltantes": "Casos disponibles por variable; pares completos en correlaciones; sin imputación",
+    "fuentes_s1": {
+      "medias": "notebook sección 6.1; informe VII",
+      "pruebas": "notebook 6.2 y 6.3; informe VIII",
+      "correlaciones_y_grupos": "notebook 5.3; informe VI"
+    }
+  },
+  "medias_validadas": [
+    {
+      "variable": "Weight_in_gms",
+      "n": 9899.0,
+      "media": 3633.8802909384785,
+      "de": 1636.132950909431,
+      "ee": 16.444585420147558,
+      "ic_t_inf": 3601.645553997511,
+      "ic_t_sup": 3666.115027879446,
+      "percentil_inf": 3602.4736539044347,
+      "percentil_sup": 3666.1829376704713,
+      "bca_inf": 3602.0905616120635,
+      "bca_sup": 3665.7660034313603,
+      "ancho_t": 64.4694738819353,
+      "ancho_percentil": 63.709283766036606,
+      "ancho_bca": 63.67544181929679,
+      "cambio_ancho_bca_pct": -1.231640363767572,
+      "desplazamiento_limites_en_ee": 0.027061041867765,
+      "sesgo_bootstrap": 0.255134922719208,
+      "ee_bootstrap": 16.28603441891954,
+      "asimetria_datos": -0.248701388915547,
+      "asimetria_medias_bootstrap": 0.003832251120816
+    },
+    {
+      "variable": "Cost_of_the_Product",
+      "n": 9899.0,
+      "media": 210.2391150621275,
+      "de": 48.04586384694678,
+      "ee": 0.482903490010838,
+      "ic_t_inf": 209.2925258614473,
+      "ic_t_sup": 211.1857042628077,
+      "percentil_inf": 209.3016188503889,
+      "percentil_sup": 211.17317153247805,
+      "bca_inf": 209.31172356376413,
+      "bca_sup": 211.18231140368925,
+      "ancho_t": 1.893178401360387,
+      "ancho_percentil": 1.871552682089146,
+      "ancho_bca": 1.870587839925122,
+      "cambio_ancho_bca_pct": -1.193261100962939,
+      "desplazamiento_limites_en_ee": 0.039754739226258,
+      "sesgo_bootstrap": -0.001503495302558,
+      "ee_bootstrap": 0.480152312345161,
+      "asimetria_datos": -0.151371423477183,
+      "asimetria_medias_bootstrap": -0.00853363586188
+    },
+    {
+      "variable": "Discount_offered",
+      "n": 10999.0,
+      "media": 13.37321574688608,
+      "de": 16.205527080640096,
+      "ee": 0.154520661930054,
+      "ic_t_inf": 13.070327480886126,
+      "ic_t_sup": 13.676104012886034,
+      "percentil_inf": 13.067092462951177,
+      "percentil_sup": 13.67842985725975,
+      "bca_inf": 13.07211913965579,
+      "bca_sup": 13.683592913926411,
+      "ancho_t": 0.605776531999908,
+      "ancho_percentil": 0.611337394308574,
+      "ancho_bca": 0.611473774270621,
+      "cambio_ancho_bca_pct": 0.940485801241664,
+      "desplazamiento_limites_en_ee": 0.048465369917758,
+      "sesgo_bootstrap": -0.001395208655333,
+      "ee_bootstrap": 0.156666027546225,
+      "asimetria_datos": 1.798929108743519,
+      "asimetria_medias_bootstrap": 0.007729625346836
+    }
+  ],
+  "permutacion": {
+    "chi2_observado": 0.7434357246718558,
+    "gl": 2,
+    "p_s1": 0.6895487627593786,
+    "p_permutacion": 0.6892310768923108,
+    "ee_monte_carlo_p": 0.004628083831762086,
+    "diferencia_p": -0.00031768586706781843,
+    "permutaciones": 10000,
+    "esperado_minimo": 709.824529502682,
+    "v_cramer": 0.008221387385031968,
+    "rechaza_s1": false,
+    "rechaza_permutacion": false
+  },
+  "correlaciones": [
+    {
+      "relacion": "Peso y descuento",
+      "n": 9899,
+      "rho_s1": -0.317682718529408,
+      "ic_inf": -0.335663488285938,
+      "ic_sup": -0.299393791076388,
+      "ancho_ic": 0.03626969720955,
+      "ee_bootstrap": 0.00932338777734,
+      "incluye_cero": false,
+      "signo": "Negativo estable"
+    },
+    {
+      "relacion": "Llamadas y costo",
+      "n": 9899,
+      "rho_s1": 0.293208276071121,
+      "ic_inf": 0.273119706852413,
+      "ic_sup": 0.312557294205593,
+      "ancho_ic": 0.03943758735318,
+      "ee_bootstrap": 0.010110972064957,
+      "incluye_cero": false,
+      "signo": "Positivo estable"
+    },
+    {
+      "relacion": "Valoración y peso",
+      "n": 9899,
+      "rho_s1": -0.010405616908101,
+      "ic_inf": -0.029912703193962,
+      "ic_sup": 0.009223387711044,
+      "ancho_ic": 0.039136090905006,
+      "ee_bootstrap": 0.010025792030774,
+      "incluye_cero": true,
+      "signo": "Signo no resuelto"
+    }
+  ],
+  "monte_carlo": {
+    "pregunta": "Variación de la diferencia de peso medio fuera de plazo menos a tiempo en estudios repetidos",
+    "parametros_s1": [
+      {
+        "index": "A tiempo",
+        "n": 3992,
+        "media": 4166.349198396793,
+        "de": 1574.6603616739928
+      },
+      {
+        "index": "Fuera de plazo",
+        "n": 5907,
+        "media": 3274.0333502624007,
+        "de": 1577.8498536259835
+      }
+    ],
+    "diferencia_s1": -892.3158481343926,
+    "ic_welch_s1": [
+      -955.6106446354922,
+      -829.0210516332929
+    ],
+    "p_welch_s1": 4.136835505513429e-161,
+    "error_estandar_s1": 32.289299359406584,
+    "modelo_principal": "Lognormal por grupo ajustada por momentos de S1",
+    "resultado_principal": {
+      "iteraciones": 10000,
+      "media": -892.837293165939,
+      "de": 31.88968796528967,
+      "p2_5": -954.9104877280867,
+      "p97_5": -830.6137467968741,
+      "error_mc_media": 0.3188968796528967
+    },
+    "convergencia": [
+      {
+        "iteraciones": 1000,
+        "media": -890.3757605130637,
+        "de": 32.442783968328186,
+        "p2_5": -953.1791691490484,
+        "p97_5": -826.6805956514153,
+        "error_mc_media": 1.025930909767131,
+        "desvio_media_teorica": 1.940087621328871,
+        "cambio_max_percentiles": null
+      },
+      {
+        "iteraciones": 2500,
+        "media": -892.1167239935577,
+        "de": 31.918039900631207,
+        "p2_5": -954.4744668277698,
+        "p97_5": -829.8065414945585,
+        "error_mc_media": 0.638360798012624,
+        "desvio_media_teorica": 0.199124140834897,
+        "cambio_max_percentiles": 3.125945843143199
+      },
+      {
+        "iteraciones": 5000,
+        "media": -892.4400529602686,
+        "de": 31.770955521266313,
+        "p2_5": -955.0020475583284,
+        "p97_5": -829.8362380766479,
+        "error_mc_media": 0.449309161877272,
+        "desvio_media_teorica": -0.124204825876063,
+        "cambio_max_percentiles": 0.527580730558611
+      },
+      {
+        "iteraciones": 10000,
+        "media": -892.837293165939,
+        "de": 31.88968796528967,
+        "p2_5": -954.9104877280867,
+        "p97_5": -830.6137467968741,
+        "error_mc_media": 0.318896879652897,
+        "desvio_media_teorica": -0.521445031546364,
+        "cambio_max_percentiles": 0.777508720226251
+      }
+    ],
+    "controles_convergencia": {
+      "Error MC < 2% del error estándar S1": true,
+      "Media simulada a menos de 3 errores MC de la teórica": true,
+      "Cambio de percentiles < 10% del error estándar S1": true
+    },
+    "comparacion_modelos": [
+      {
+        "metodo": "Monte Carlo lognormal",
+        "iteraciones": 10000,
+        "media": -892.837293165939,
+        "de": 31.88968796528967,
+        "p2_5": -954.9104877280867,
+        "p97_5": -830.6137467968741,
+        "error_mc_media": 0.318896879652897,
+        "ancho_95": 124.29674093121253,
+        "cambio_media_vs_s1": -0.521445031546364,
+        "cambio_de_vs_s1_pct": -1.237596981182243
+      },
+      {
+        "metodo": "Monte Carlo Gamma",
+        "iteraciones": 10000,
+        "media": -892.7280650732581,
+        "de": 32.225559376385235,
+        "p2_5": -956.8475071428167,
+        "p97_5": -829.8741093902844,
+        "error_mc_media": 0.322255593763852,
+        "ancho_95": 126.97339775253226,
+        "cambio_media_vs_s1": -0.412216938865527,
+        "cambio_de_vs_s1_pct": -0.197402806149094
+      },
+      {
+        "metodo": "Bootstrap por estado",
+        "iteraciones": 10000,
+        "media": -892.84235581474,
+        "de": 32.30753016351525,
+        "p2_5": -955.8424442131678,
+        "p97_5": -830.7665498849395,
+        "error_mc_media": 0.323075301635152,
+        "ancho_95": 125.07589432822829,
+        "cambio_media_vs_s1": -0.526507680347436,
+        "cambio_de_vs_s1_pct": 0.056460822843341
+      }
+    ],
+    "sensibilidad_entradas": [
+      {
+        "escenario": "Extremo inferior IC S1",
+        "delta_entrada": -955.6106446354922,
+        "media_fuera_entrada": 3210.738553761301,
+        "iteraciones": 10000,
+        "media": -955.422062057245,
+        "de": 32.59322865877386,
+        "p2_5": -1019.3741754022776,
+        "p97_5": -891.3936543157669,
+        "error_mc_media": 0.325932286587739
+      },
+      {
+        "escenario": "Central S1",
+        "delta_entrada": -892.3158481343926,
+        "media_fuera_entrada": 3274.0333502624007,
+        "iteraciones": 10000,
+        "media": -892.837293165939,
+        "de": 31.88968796528967,
+        "p2_5": -954.9104877280867,
+        "p97_5": -830.6137467968741,
+        "error_mc_media": 0.318896879652897
+      },
+      {
+        "escenario": "Extremo superior IC S1",
+        "delta_entrada": -829.0210516332929,
+        "media_fuera_entrada": 3337.3281467635006,
+        "iteraciones": 10000,
+        "media": -829.4146456125397,
+        "de": 32.39435760351856,
+        "p2_5": -892.9809453843932,
+        "p97_5": -765.6282526867343,
+        "error_mc_media": 0.323943576035186
+      }
+    ],
+    "regla_escenarios": "Media a tiempo, DE y n fijos en S1; media fuera = media a tiempo + extremo IC Welch S1",
+    "interpretacion_intervalos": "Monte Carlo: variación condicional al modelo; bootstrap: IC percentil de la diferencia"
+  },
+  "robustez": {
+    "influencia_jackknife": [
+      {
+        "variable": "Weight_in_gms",
+        "ID": 200,
+        "valor": 7846.0,
+        "media_sin_caso": 3633.454738330976,
+        "cambio_media": -0.425552607502596,
+        "cambio_abs_en_ee": 0.025877977256953
+      },
+      {
+        "variable": "Weight_in_gms",
+        "ID": 199,
+        "valor": 7640.0,
+        "media_sin_caso": 3633.475550616286,
+        "cambio_media": -0.404740322192538,
+        "cambio_abs_en_ee": 0.024612376162227
+      },
+      {
+        "variable": "Weight_in_gms",
+        "ID": 206,
+        "valor": 7588.0,
+        "media_sin_caso": 3633.4808042028694,
+        "cambio_media": -0.399486735609116,
+        "cambio_abs_en_ee": 0.024292904041209
+      },
+      {
+        "variable": "Cost_of_the_Product",
+        "ID": 432,
+        "valor": 96.0,
+        "media_sin_caso": 210.2506566983229,
+        "cambio_media": 0.011541636195403,
+        "cambio_abs_en_ee": 0.023900502759142
+      },
+      {
+        "variable": "Cost_of_the_Product",
+        "ID": 975,
+        "valor": 96.0,
+        "media_sin_caso": 210.2506566983229,
+        "cambio_media": 0.011541636195403,
+        "cambio_abs_en_ee": 0.023900502759142
+      },
+      {
+        "variable": "Cost_of_the_Product",
+        "ID": 2419,
+        "valor": 96.0,
+        "media_sin_caso": 210.2506566983229,
+        "cambio_media": 0.011541636195403,
+        "cambio_abs_en_ee": 0.023900502759142
+      },
+      {
+        "variable": "Discount_offered",
+        "ID": 112,
+        "valor": 65.0,
+        "media_sin_caso": 13.368521549372613,
+        "cambio_media": -0.004694197513468,
+        "cambio_abs_en_ee": 0.030379092704071
+      },
+      {
+        "variable": "Discount_offered",
+        "ID": 159,
+        "valor": 65.0,
+        "media_sin_caso": 13.368521549372613,
+        "cambio_media": -0.004694197513468,
+        "cambio_abs_en_ee": 0.030379092704071
+      },
+      {
+        "variable": "Discount_offered",
+        "ID": 241,
+        "valor": 65.0,
+        "media_sin_caso": 13.368521549372613,
+        "cambio_media": -0.004694197513468,
+        "cambio_abs_en_ee": 0.030379092704071
+      }
+    ],
+    "resumen_influencia": [
+      {
+        "variable": "Weight_in_gms",
+        "max_cambio_absoluto": 0.425552607502596,
+        "max_cambio_en_ee": 0.025877977256953,
+        "ee_s1": 16.444585420147558,
+        "ee_jackknife": 16.444585420147394
+      },
+      {
+        "variable": "Cost_of_the_Product",
+        "max_cambio_absoluto": 0.011541636195403,
+        "max_cambio_en_ee": 0.023900502759142,
+        "ee_s1": 0.482903490010838,
+        "ee_jackknife": 0.482903490010845
+      },
+      {
+        "variable": "Discount_offered",
+        "max_cambio_absoluto": 0.004694197513468,
+        "max_cambio_en_ee": 0.030379092704071,
+        "ee_s1": 0.154520661930054,
+        "ee_jackknife": 0.15452066193005
+      }
+    ],
+    "auditoria_extremos": [
+      {
+        "variable": "Weight_in_gms",
+        "limite_inf": -2976.5,
+        "limite_sup": 9867.5,
+        "n_validos": 9899,
+        "marcados": 0,
+        "porcentaje": 0.0
+      },
+      {
+        "variable": "Cost_of_the_Product",
+        "limite_inf": 48.5,
+        "limite_sup": 372.5,
+        "n_validos": 9899,
+        "marcados": 0,
+        "porcentaje": 0.0
+      },
+      {
+        "variable": "Discount_offered",
+        "limite_inf": -5.0,
+        "limite_sup": 19.0,
+        "n_validos": 10999,
+        "marcados": 2209,
+        "porcentaje": 20.08364396763342
+      }
+    ],
+    "sensibilidad_extremos": [
+      {
+        "estimador": "Media descuento (IC BCa)",
+        "n_base": 10999,
+        "n_escenario": 8790,
+        "base": 13.37321574688608,
+        "escenario": 5.975085324232082,
+        "ic_base_inf": 13.07211913965579,
+        "ic_base_sup": 13.683592913926411,
+        "ic_escenario_inf": 5.901697223521302,
+        "ic_escenario_sup": 6.04813038078764,
+        "cambio": -7.398130422653998
+      },
+      {
+        "estimador": "Spearman peso–descuento (IC percentil)",
+        "n_base": 9899,
+        "n_escenario": 7902,
+        "base": -0.317682718529408,
+        "escenario": -0.077640383401522,
+        "ic_base_inf": -0.335663488285938,
+        "ic_base_sup": -0.299393791076388,
+        "ic_escenario_inf": -0.099431139581909,
+        "ic_escenario_sup": -0.055816167194063,
+        "cambio": 0.240042335127886
+      }
+    ],
+    "n_excluidos_escenario": 2209,
+    "porcentaje_excluido_escenario": 20.08364396763342,
+    "ic_percentil_descuento_filtrado": [
+      5.900907281001138,
+      6.047329351535836
+    ],
+    "politica": "Retener todos los registros en el análisis principal; la exclusión es solo sensibilidad"
+  },
+  "sintesis_y_recomendaciones_s3": [
+    {
+      "resultado": "Media de peso",
+      "evaluacion": "Consistente entre IC; baja influencia individual",
+      "alcance": "Sin extremos según 1,5 RIC; independencia y representatividad pendientes",
+      "recomendacion_s3": "Conservar media e IC BCa como referencia; revisar sesgos y variables operativas"
+    },
+    {
+      "resultado": "Media de costo",
+      "evaluacion": "Consistente entre IC; baja influencia individual",
+      "alcance": "Sin extremos según 1,5 RIC; análisis sobre casos disponibles",
+      "recomendacion_s3": "Conservar media e IC; evaluar imputación sin acceder a verdad reservada durante el ajuste"
+    },
+    {
+      "resultado": "Media de descuento",
+      "evaluacion": "Precisa con la muestra completa; sensible a descuentos altos",
+      "alcance": "Excluir 20,08% cambia la población descrita; unidad sin confirmar",
+      "recomendacion_s3": "Conservar casos; verificar unidad y complementar con mediana, cuantiles y segmentos"
+    },
+    {
+      "resultado": "Transporte y puntualidad",
+      "evaluacion": "Pruebas coinciden: no se rechaza independencia",
+      "alcance": "No prueba equivalencia ni ausencia de asociación en otra población",
+      "recomendacion_s3": "No priorizar cambios de transporte por este resultado aislado"
+    },
+    {
+      "resultado": "Peso y descuento",
+      "evaluacion": "Signo negativo estable; magnitud sensible al filtro",
+      "alcance": "La asociación se debilita al retirar descuentos altos",
+      "recomendacion_s3": "Analizar composición y posibles variables de confusión; evitar interpretación causal"
+    },
+    {
+      "resultado": "Llamadas y costo",
+      "evaluacion": "Signo positivo estable frente al remuestreo",
+      "alcance": "Asociación limitada; no indica causalidad ni utilidad predictiva asegurada",
+      "recomendacion_s3": "Mantener como relación exploratoria; comprobar con validación fuera de muestra"
+    },
+    {
+      "resultado": "Valoración y peso",
+      "evaluacion": "Asociación pequeña; IC incluye cero",
+      "alcance": "No se confirma el signo; no se observa alta variabilidad",
+      "recomendacion_s3": "No priorizar como asociación monotónica fuerte; no descartar otras relaciones"
+    },
+    {
+      "resultado": "Diferencia de peso por puntualidad",
+      "evaluacion": "Dirección consistente en los métodos y escenarios evaluados",
+      "alcance": "Modelos calibrados con S1; no identifican causas del retraso",
+      "recomendacion_s3": "Investigar perfiles, destinos y distancia antes de recomendar intervenciones"
+    }
+  ],
+  "limitaciones": [
+    "Muestreo e independencia no documentados",
+    "Asociaciones no causales",
+    "Faltantes MCAR artificiales; incertidumbre condicionada a datos disponibles",
+    "Unidad del descuento sin confirmar",
+    "IC y pruebas individuales sin ajuste conjunto",
+    "Simulación calibrada con S1: convergencia no implica validez del modelo"
+  ],
+  "entrega_formal_pendiente": [
+    "PDF de máximo siete páginas",
+    "Organización S1/S2 solicitada por la rúbrica; se conserva la estructura actual por instrucción del equipo",
+    "Publicar los entregables y el JSON en GitHub y presentar el enlace en Canvas"
+  ]
+}
