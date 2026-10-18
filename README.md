@@ -3,18 +3,18 @@
 **Universidad Andrés Bello (UNAB)**  
 **Magíster en Ciencia de Datos e Inteligencia Artificial**  
 **Asignatura:** Estadística Computacional (`MCDI501`)  
-**Evaluación:** Sumativa 1 — Informe técnico de avance del proyecto  
+**Evaluaciones:** Sumativa 1 (Fase 2) y Sumativa 2 (Fase 3) — Estadística inferencial, simulación y remuestreo
 **Periodo:** Octubre de 2026
 
 **Integrantes:** Felipe Palma Barrientos · Vicente Aguila Rojas · Cristian Grandon Grandon · Jorge Gutierrez Jaramillo
 
 [![Python](https://img.shields.io/badge/Python-3.14-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter&logoColor=white)](https://jupyter.org/)
-[![Estado](https://img.shields.io/badge/Sumativa%201-An%C3%A1lisis%20implementado-238636)](#10-estado-del-proyecto)
+[![Estado](https://img.shields.io/badge/Sumativas%201%20y%202-Implementadas-238636)](#10-estado-del-proyecto)
 
 ## 1. Descripción del proyecto
 
-Este repositorio documenta la primera fase del proyecto de **Estadística Computacional** del Grupo 7. Se utiliza el dataset público **E-Commerce Shipping / Customer Analytics** para describir las características de los envíos, estudiar la puntualidad de las entregas y explorar relaciones mediante estadística descriptiva e inferencial.
+Este repositorio documenta el desarrollo de las evaluaciones Sumativa 1 (Fase 2) y Sumativa 2 (Fase 3) del proyecto de **Estadística Computacional** del Grupo 7. Se utiliza el dataset público **E-Commerce Shipping / Customer Analytics** para estudiar las características de los envíos, analizar su asociación con la puntualidad de entrega y evaluar la estabilidad de los resultados inferenciales mediante técnicas de simulación y remuestreo.
 
 El trabajo utiliza Python y Jupyter Notebook, con funciones reutilizables en `src/`, controles automatizados en `tests/`, conservación de los datos originales y un informe técnico en `reports/`. El propósito es obtener resultados **trazables, interpretables y reproducibles**; las asociaciones encontradas no se interpretan como relaciones causales.
 
@@ -73,11 +73,13 @@ El trabajo utiliza Python y Jupyter Notebook, con funciones reutilizables en `sr
 │   │   └── customer_analytics.csv
 │   └── processed/
 │       ├── ecommerce_mcar.csv
-│       └── valores_originales_mcar.csv
+│       ├── valores_originales_mcar.csv
+│       └── resultados_validos_s2.json
 ├── notebooks/
-│   └── sumativa_1.ipynb
+│   ├── sumativa_1.ipynb
+│   └── sumativa_2.ipynb
 ├── reports/
-│   └── Sumativa_1.pdf
+│   └── Informe_Sumativa_1_Grupo_7_Formato_Institucional_UNAB.pdf
 ├── src/
 │   ├── __init__.py
 │   ├── carga.py
@@ -107,7 +109,9 @@ El trabajo utiliza Python y Jupyter Notebook, con funciones reutilizables en `sr
 | `tests/test_preparacion.py` | Pruebas del esquema, conservación del original y reproducibilidad MCAR. |
 | `tests/test_inferencia.py` | Pruebas de intervalos con faltantes, Welch y chi-cuadrado sobre datos sintéticos. |
 | `notebooks/sumativa_1.ipynb` | Orquestación del análisis, figuras, salidas e interpretaciones. |
-| `reports/Sumativa_1.pdf` | Informe técnico institucional de la Sumativa 1, máximo ocho páginas. |
+| `reports/Informe_Sumativa_1_Grupo_7_Formato_Institucional_UNAB.pdf` | Informe técnico institucional de la Sumativa 1, máximo ocho páginas. |
+| `notebooks/sumativa_2.ipynb` | Validación mediante bootstrap, permutación, Monte Carlo y análisis de robustez. |
+| `data/processed/resultados_validos_s2.json` | Resultados estadísticos validados y recomendaciones metodológicas para S3. |
 
 ## 5. Preparación y trazabilidad de datos
 
@@ -157,7 +161,7 @@ Si `py -3.14` no está disponible, utiliza `python -m venv .venv` con un intérp
 ### Ejecutar el notebook
 
 1. Abrir la **carpeta raíz del repositorio** en Visual Studio Code o Jupyter.
-2. Abrir `notebooks/sumativa_1.ipynb` y seleccionar el kernel de `.venv`.
+2. Abrir `notebooks/sumativa_1.ipynb` o `notebooks/sumativa_2.ipynb`, según la evaluación que se desea reproducir, y seleccionar el kernel del entorno virtual `.venv`.
 3. Ejecutar **Restart Kernel → Run All** en orden, desde la preparación hasta las conclusiones.
 4. Comprobar que las celdas se ejecuten sin errores y guardar el notebook con sus salidas actualizadas.
 
@@ -280,6 +284,45 @@ La introducción de faltantes MCAR es una transformación **artificial y control
 
 La Sumativa 1 **no implementa todavía un modelo predictivo ni una evaluación de imputaciones**; son líneas de continuidad, no resultados actuales.
 
+### Continuidad del proyecto: Sumativa 2 — Fase 3
+
+La Sumativa 2 profundiza y valida los resultados inferenciales obtenidos en la Sumativa 1 mediante métodos computacionales de simulación y remuestreo. Su objetivo es evaluar la incertidumbre, estabilidad y sensibilidad de las estimaciones estadísticas, manteniendo la trazabilidad con los resultados originales.
+
+El análisis se desarrolla en `notebooks/sumativa_2.ipynb` e incluye:
+
+| Procedimiento | Implementación |
+|---|---|
+| Bootstrap no paramétrico | 10.000 remuestras para tres medias; IC percentil y BCa al 95 %, comparados con los IC clásicos de S1 |
+| Pruebas de permutación | 10.000 permutaciones para contrastar las pruebas de chi-cuadrado y diferencia de medias realizadas en S1 |
+| Estabilidad de correlaciones | Tres correlaciones de Spearman evaluadas mediante 10.000 remuestras bootstrap e IC al 95 % |
+| Simulación Monte Carlo | 10.000 iteraciones por escenario, utilizando parámetros estimados en S1 y evaluación de convergencia |
+| Análisis de robustez | Jackknife, sensibilidad frente a outliers, distribuciones alternativas y variación de parámetros |
+| Preparación para S3 | Consolidación de resultados validados, limitaciones y recomendaciones metodológicas |
+
+**Trazabilidad:** Los procedimientos utilizan los parámetros, intervalos de confianza, pruebas de hipótesis y correlaciones obtenidos en la Sumativa 1. Las comparaciones permiten evaluar la concordancia entre los resultados paramétricos originales y los métodos computacionales.
+
+**Resultados para la Sumativa 3:** El notebook genera `data/processed/resultados_validos_s2.json`, que contiene los resultados estadísticos validados y recomendaciones metodológicas para la siguiente fase.
+
+### Ejecución de la Sumativa 2
+
+Desde la raíz del repositorio, una vez instalado el entorno descrito en la sección 6:
+
+```powershell
+jupyter lab notebooks/sumativa_2.ipynb
+```
+
+En Jupyter, seleccionar el kernel del entorno virtual y ejecutar todas las celdas en orden mediante **Restart Kernel and Run All Cells**.
+
+El notebook utiliza semillas aleatorias definidas para favorecer la reproducibilidad de los procedimientos de remuestreo y simulación.
+
+### Interpretación y limitaciones
+
+Los resultados bootstrap y de permutación permiten contrastar la estabilidad de las conclusiones inferenciales de S1. Sin embargo, no eliminan las limitaciones del dataset ni garantizan representatividad poblacional.
+
+Las simulaciones Monte Carlo corresponden a escenarios hipotéticos condicionados a los parámetros y distribuciones utilizadas. Por tanto, sus resultados no constituyen predicciones operacionales ni evidencia causal.
+
+Los resultados validados servirán como referencia metodológica para la Sumativa 3, especialmente en el tratamiento de datos faltantes, evaluación de sensibilidad y selección de procedimientos estadísticos.
+
 ## 10. Estado del proyecto
 
 | Componente | Estado en `main` |
@@ -293,11 +336,22 @@ La Sumativa 1 **no implementa todavía un modelo predictivo ni una evaluación d
 | Welch y chi-cuadrado, con tamaños del efecto | Implementados |
 | Discusión, supuestos y conclusiones | Incorporados al notebook |
 | Pruebas automatizadas (6 casos) | Disponibles en `tests/` |
-| Notebook con resultados actualizados | Disponible; 10 celdas de código con salidas consecutivas guardadas |
-| Informe técnico institucional | Disponible en `reports/Sumativa_1.pdf` |
+| Notebook S1 con resultados actualizados | Disponible; 10 celdas de código en Notebook S1 con salidas consecutivas guardadas |
+| Informe técnico institucional | Disponible en `reports/Informe_Sumativa_1_Grupo_7_Formato_Institucional_UNAB.pdf` |
 | Modelo predictivo e imputación | Fuera del alcance de Sumativa 1 |
+| Sumativa 2 — Validación bootstrap de IC (percentil y BCa) | Completado |
+| Sumativa 2 — Validación de pruebas mediante permutación | Completado |
+| Sumativa 2 — Estabilidad de correlaciones de Spearman | Completado |
+| Sumativa 2 — Simulación Monte Carlo y convergencia | Completado |
+| Sumativa 2 — Análisis de robustez (jackknife, outliers y sensibilidad) | Completado |
+| Sumativa 2 — Consolidación de resultados validados para S3 | Completado |
+| Sumativa 2 — Generación de resultados_validos_s2.json | Completado |
 
-**Nota de reproducción:** el notebook disponible en GitHub presenta diez celdas de código ejecutadas y salidas guardadas sin errores. La comprobación definitiva en un equipo nuevo corresponde a ejecutar **Restart Kernel → Run All** e inspeccionar que se reproduzcan las mismas tablas y figuras.
+**Estado general:** Las evaluaciones Sumativa 1 y Sumativa 2 se encuentran implementadas. La segunda evaluación incorpora procedimientos de simulación y remuestreo para validar y profundizar los resultados inferenciales obtenidos en la primera, incluyendo análisis de sensibilidad y consolidación de resultados para la Sumativa 3.
+
+Los procedimientos y resultados se encuentran documentados en notebooks/sumativa_2.ipynb, mientras que los insumos validados para la siguiente fase se almacenan en data/processed/resultados_validos_s2.json.
+
+**Nota de reproducción:** El notebook de la Sumativa 1 presenta diez celdas de código ejecutadas, con salidas guardadas sin errores. Por su parte, el notebook de la Sumativa 2 incorpora los procedimientos de simulación y remuestreo documentados en este repositorio. Para verificar la reproducibilidad de ambas evaluaciones en un entorno nuevo, se recomienda ejecutar **Restart Kernel → Run All** en cada notebook y comprobar que se reproduzcan correctamente las tablas, figuras y archivos de resultados.
 
 ## 11. Equipo y control de versiones
 
@@ -307,7 +361,7 @@ Para registrar una futura actualización del README de manera independiente:
 
 ```powershell
 git add README.md
-git commit -m "docs(readme): documenta analisis y resultados finales de sumativa 1"
+git commit -m "docs: actualiza README con resultados de sumativas 1 y 2"
 git pull --rebase origin main
 git push origin main
 ```
