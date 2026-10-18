@@ -5,11 +5,11 @@
   "procedencia": {
     "repositorio": "https://github.com/jorge170102/ESTAD-STICA-COMPUTACIONAL---Grupo-7--MCDI501.202682.1914.EL.ON",
     "commit_referencia_s1": "0c7ffaca4e45525ab434f6c9305128221e4ef1c4",
-    "commit_en_ejecucion": "4b730b0f6ca1f75bfe731793a3d2a03efe60ec27",
+    "commit_en_ejecucion": "fd0cd5effaaf8c6136bb313923602121da052641",
     "notebook_s1": "notebooks/sumativa_1.ipynb",
     "datos": "data/processed/ecommerce_mcar.csv",
     "sha256_datos_lf": "1a7f8a5c4da839e481ff2dc93e30c7f64205407a2bd62ae94be4265027ca0714",
-    "fecha_utc": "2026-10-17T22:52:31.366736+00:00",
+    "fecha_utc": "2026-10-18T03:28:07.424241+00:00",
     "versiones": {
       "Python": "3.14.7",
       "NumPy": "2.5.3",
