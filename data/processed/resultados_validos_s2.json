@@ -1,20 +1,20 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "evaluacion": "Sumativa 2",
   "equipo": "Grupo 7",
   "procedencia": {
     "repositorio": "https://github.com/jorge170102/ESTAD-STICA-COMPUTACIONAL---Grupo-7--MCDI501.202682.1914.EL.ON",
     "commit_referencia_s1": "0c7ffaca4e45525ab434f6c9305128221e4ef1c4",
-    "commit_en_ejecucion": "9d93fefed810910e3313c05c881ea1689888d9a8",
+    "commit_en_ejecucion": "608f8c5cdbd31923dde4fa18ca6f397ae2704900",
     "notebook_s1": "notebooks/sumativa_1.ipynb",
     "datos": "data/processed/ecommerce_mcar.csv",
     "sha256_datos_lf": "1a7f8a5c4da839e481ff2dc93e30c7f64205407a2bd62ae94be4265027ca0714",
-    "fecha_utc": "2026-10-18T06:20:54.503498+00:00",
+    "fecha_utc": "2026-10-18T22:00:09.742148+00:00",
     "versiones": {
-      "Python": "3.14.7",
+      "Python": "3.14.8",
       "NumPy": "2.5.3",
       "pandas": "3.0.6",
-      "SciPy": "1.18.1",
+      "SciPy": "1.17.0",
       "Matplotlib": "3.11.2"
     },
     "bootstrap_por_analisis": 10000,
@@ -28,6 +28,7 @@
         103
       ],
       "permutacion": 201,
+      "permutacion_peso": 202,
       "correlaciones": [
         301,
         302,
@@ -39,7 +40,8 @@
       "descuento_filtrado": 501,
       "correlacion_filtrada": 502,
       "escenario_inferior": 601,
-      "escenario_superior": 602
+      "escenario_superior": 602,
+      "robustez_recortadas": 603
     },
     "confianza": 0.95,
     "codificacion": {
@@ -134,6 +136,28 @@
     "rechaza_s1": false,
     "rechaza_permutacion": false
   },
+  "permutacion_peso": {
+    "n_total": 9899,
+    "n_a_tiempo": 3992,
+    "n_fuera_plazo": 5907,
+    "diferencia_observada_g": -892.3158481343926,
+    "intervalo_central_nulo_95_g": [
+      -65.64491404088038,
+      65.70283179678299
+    ],
+    "rango_nulo_simulado_g": [
+      -127.59730753194208,
+      139.80033365359486
+    ],
+    "p_permutacion": 9.999000099990002e-05,
+    "p_welch_s1": 4.136835505513428e-161,
+    "extremos": 0,
+    "permutaciones": 10000,
+    "semilla": 202,
+    "rechaza_welch_s1": true,
+    "rechaza_permutacion": true,
+    "supuesto_perm": "Intercambiabilidad bajo H0; no equivale automáticamente a Welch con varianzas distintas"
+  },
   "correlaciones": [
     {
       "relacion": "Peso y descuento",
@@ -190,7 +214,7 @@
       -955.6106446354922,
       -829.0210516332929
     ],
-    "p_welch_s1": 4.136835505513429e-161,
+    "p_welch_s1": 4.136835505513428e-161,
     "error_estandar_s1": 32.289299359406584,
     "modelo_principal": "Lognormal por grupo ajustada por momentos de S1",
     "resultado_principal": {
@@ -284,6 +308,98 @@
         "ancho_95": 125.07589432822829,
         "cambio_media_vs_s1": -0.526507680347436,
         "cambio_de_vs_s1_pct": 0.056460822843341
+      }
+    ],
+    "diagnostico_ajuste_cuantiles": [
+      {
+        "grupo": "A tiempo",
+        "probabilidad": 0.05,
+        "cuantil_empirico_g": 1195.55,
+        "cuantil_lognormal_g": 2136.6606996700625,
+        "cuantil_gamma_g": 1955.4776940253923,
+        "error_abs_lognormal_g": 941.1106996700626,
+        "error_abs_gamma_g": 759.9276940253924
+      },
+      {
+        "grupo": "A tiempo",
+        "probabilidad": 0.25,
+        "cuantil_empirico_g": 4041.75,
+        "cuantil_lognormal_g": 3045.968617924893,
+        "cuantil_gamma_g": 3025.2145937314012,
+        "error_abs_lognormal_g": 995.7813820751071,
+        "error_abs_gamma_g": 1016.5354062685988
+      },
+      {
+        "grupo": "A tiempo",
+        "probabilidad": 0.5,
+        "cuantil_empirico_g": 4672.0,
+        "cuantil_lognormal_g": 3897.2849687249472,
+        "cuantil_gamma_g": 3969.7372985471234,
+        "error_abs_lognormal_g": 774.7150312750528,
+        "error_abs_gamma_g": 702.2627014528766
+      },
+      {
+        "grupo": "A tiempo",
+        "probabilidad": 0.75,
+        "cuantil_empirico_g": 5338.0,
+        "cuantil_lognormal_g": 4986.535330031406,
+        "cuantil_gamma_g": 5093.902408436585,
+        "error_abs_lognormal_g": 351.4646699685936,
+        "error_abs_gamma_g": 244.09759156341534
+      },
+      {
+        "grupo": "A tiempo",
+        "probabilidad": 0.95,
+        "cuantil_empirico_g": 5863.0,
+        "cuantil_lognormal_g": 7108.676698080713,
+        "cuantil_gamma_g": 7048.365794825776,
+        "error_abs_lognormal_g": 1245.6766980807133,
+        "error_abs_gamma_g": 1185.365794825776
+      },
+      {
+        "grupo": "Fuera de plazo",
+        "probabilidad": 0.05,
+        "cuantil_empirico_g": 1145.0,
+        "cuantil_lognormal_g": 1390.8391687277776,
+        "cuantil_gamma_g": 1175.5403171146029,
+        "error_abs_lognormal_g": 245.83916872777763,
+        "error_abs_gamma_g": 30.540317114602885
+      },
+      {
+        "grupo": "Fuera de plazo",
+        "probabilidad": 0.25,
+        "cuantil_empirico_g": 1735.5,
+        "cuantil_lognormal_g": 2167.035792005861,
+        "cuantil_gamma_g": 2119.8465564407534,
+        "error_abs_lognormal_g": 431.5357920058609,
+        "error_abs_gamma_g": 384.3465564407534
+      },
+      {
+        "grupo": "Fuera de plazo",
+        "probabilidad": 0.5,
+        "cuantil_empirico_g": 3225.0,
+        "cuantil_lognormal_g": 2949.394031953399,
+        "cuantil_gamma_g": 3024.3508103116055,
+        "error_abs_lognormal_g": 275.605968046601,
+        "error_abs_gamma_g": 200.64918968839447
+      },
+      {
+        "grupo": "Fuera de plazo",
+        "probabilidad": 0.75,
+        "cuantil_empirico_g": 4701.0,
+        "cuantil_lognormal_g": 4014.2046512625393,
+        "cuantil_gamma_g": 4157.615444621837,
+        "error_abs_lognormal_g": 686.7953487374607,
+        "error_abs_gamma_g": 543.384555378163
+      },
+      {
+        "grupo": "Fuera de plazo",
+        "probabilidad": 0.95,
+        "cuantil_empirico_g": 5735.7,
+        "cuantil_lognormal_g": 6254.443613116941,
+        "cuantil_gamma_g": 6225.177060650873,
+        "error_abs_lognormal_g": 518.7436131169416,
+        "error_abs_gamma_g": 489.4770606508728
       }
     ],
     "sensibilidad_entradas": [
@@ -399,6 +515,20 @@
         "cambio_abs_en_ee": 0.030379092704071
       }
     ],
+    "comparacion_medias_recortadas": {
+      "proporcion_recortada_en_cada_cola": 0.1,
+      "diferencia_media_s1_g": -892.3158481343926,
+      "diferencia_recortada_g": -1094.8484426254595,
+      "cambio_respecto_s1_g": -202.5325944910669,
+      "ic95_bootstrap_percentil_g": [
+        -1172.135190635366,
+        -1017.9070468692684
+      ],
+      "iteraciones": 10000,
+      "semilla": 603,
+      "mismo_signo": true,
+      "ic_excluye_cero": true
+    },
     "resumen_influencia": [
       {
         "variable": "Weight_in_gms",
@@ -457,7 +587,7 @@
         "escenario": 5.975085324232082,
         "ic_base_inf": 13.07211913965579,
         "ic_base_sup": 13.683592913926411,
-        "ic_escenario_inf": 5.901697223521302,
+        "ic_escenario_inf": 5.901697223521303,
         "ic_escenario_sup": 6.04813038078764,
         "cambio": -7.398130422653998
       },
@@ -527,7 +657,7 @@
     },
     {
       "resultado": "Diferencia de peso por puntualidad",
-      "evaluacion": "Dirección consistente en los métodos y escenarios evaluados",
+      "evaluacion": "Dirección examinada con Welch, permutación, familias simuladas y media recortada",
       "alcance": "Modelos calibrados con S1; no identifican causas del retraso",
       "recomendacion_s3": "Investigar perfiles, destinos y distancia antes de recomendar intervenciones"
     }
@@ -541,8 +671,7 @@
     "Simulación calibrada con S1: convergencia no implica validez del modelo"
   ],
   "entrega_formal_pendiente": [
-    "PDF de máximo siete páginas",
-    "Organización S1/S2 solicitada por la rúbrica; se conserva la estructura actual por instrucción del equipo",
+    "Ejecutar desde cero y actualizar este JSON en el repositorio oficial",
     "Publicar los entregables y el JSON en GitHub y presentar el enlace en Canvas"
   ]
 }
