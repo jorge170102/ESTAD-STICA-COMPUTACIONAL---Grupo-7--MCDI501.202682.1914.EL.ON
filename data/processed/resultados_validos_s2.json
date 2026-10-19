@@ -1,15 +1,15 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "evaluacion": "Sumativa 2",
   "equipo": "Grupo 7",
   "procedencia": {
     "repositorio": "https://github.com/jorge170102/ESTAD-STICA-COMPUTACIONAL---Grupo-7--MCDI501.202682.1914.EL.ON",
     "commit_referencia_s1": "0c7ffaca4e45525ab434f6c9305128221e4ef1c4",
-    "commit_en_ejecucion": "608f8c5cdbd31923dde4fa18ca6f397ae2704900",
+    "commit_en_ejecucion": "94ccfba75228cc92daa3881e1ae311004762413b",
     "notebook_s1": "notebooks/sumativa_1.ipynb",
     "datos": "data/processed/ecommerce_mcar.csv",
     "sha256_datos_lf": "1a7f8a5c4da839e481ff2dc93e30c7f64205407a2bd62ae94be4265027ca0714",
-    "fecha_utc": "2026-10-18T22:00:09.742148+00:00",
+    "fecha_utc": "2026-10-19T22:13:28.383444+00:00",
     "versiones": {
       "Python": "3.14.8",
       "NumPy": "2.5.3",
@@ -272,6 +272,28 @@
       "Media simulada a menos de 3 errores MC de la teórica": true,
       "Cambio de percentiles < 10% del error estándar S1": true
     },
+    "validacion_cobertura_welch": [
+      {
+        "familia": "lognormal",
+        "iteraciones": 10000,
+        "parametro_delta_verdadero_modelo_g": -892.3158481343926,
+        "cobertura_ic_welch_95_pct": 95.35,
+        "error_montecarlo_cobertura_pp": 0.210565310533335,
+        "ancho_medio_ic_welch_g": 126.59784570022703,
+        "porcentaje_ic_excluye_cero": 100.0
+      },
+      {
+        "familia": "gamma",
+        "iteraciones": 10000,
+        "parametro_delta_verdadero_modelo_g": -892.3158481343926,
+        "cobertura_ic_welch_95_pct": 94.94,
+        "error_montecarlo_cobertura_pp": 0.219179469841498,
+        "ancho_medio_ic_welch_g": 126.58188842532714,
+        "porcentaje_ic_excluye_cero": 100.0
+      }
+    ],
+    "control_cobertura_condicional": true,
+    "interpretacion_cobertura": "Fracción de intervalos Welch que incluyen el parámetro de entrada en 10.000 estudios por modelo. Evalúa calibración condicional, no validez externa ni causalidad.",
     "comparacion_modelos": [
       {
         "metodo": "Monte Carlo lognormal",
@@ -668,7 +690,7 @@
     "Faltantes MCAR artificiales; incertidumbre condicionada a datos disponibles",
     "Unidad del descuento sin confirmar",
     "IC y pruebas individuales sin ajuste conjunto",
-    "Simulación calibrada con S1: convergencia no implica validez del modelo"
+    "Simulación calibrada con S1: convergencia y cobertura condicional no implican validez externa del modelo"
   ],
   "entrega_formal_pendiente": [
     "Ejecutar desde cero y actualizar este JSON en el repositorio oficial",
