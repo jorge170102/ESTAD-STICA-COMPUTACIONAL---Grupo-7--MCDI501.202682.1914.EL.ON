@@ -63,15 +63,22 @@ El trabajo utiliza Python y Jupyter Notebook, con funciones reutilizables en `sr
 
 ## 4. Estructura del repositorio
 
+**Los archivos de trabajo y las rutas canónicas se mantienen en `notebooks/`, `src/` y `data/`.**
+Las carpetas `S1/` y `S2/` son índices de entrega que enlazan estos archivos sin
+copiarlos ni producir versiones divergentes.
+
 ```text
 .
 ├── .gitignore
 ├── .mailmap
 ├── Minutas/
 │   └── 20261007_Minuta.md
+├── S1/
+│   └── README.md                       # Índice de evidencias S1
+├── S2/
+│   └── README.md                       # Índice de evidencias S2
 ├── data/
-│   ├── raw/
-│   │   └── customer_analytics.csv
+│   ├── raw/customer_analytics.csv
 │   └── processed/
 │       ├── ecommerce_mcar.csv
 │       ├── valores_originales_mcar.csv
@@ -81,6 +88,7 @@ El trabajo utiliza Python y Jupyter Notebook, con funciones reutilizables en `sr
 │   └── sumativa_2.ipynb
 ├── reports/
 │   └── Informe_Sumativa_1_Grupo_7_Formato_Institucional_UNAB.pdf
+│       # Informe S2: pendiente de publicación por el equipo
 ├── src/
 │   ├── __init__.py
 │   ├── carga.py
@@ -89,33 +97,52 @@ El trabajo utiliza Python y Jupyter Notebook, con funciones reutilizables en `sr
 │   ├── estadistica_descriptiva.py
 │   ├── analisis_bivariado.py
 │   ├── inferencia.py
-│   └── validacion_s2.py
+│   ├── validacion_s2.py
+│   ├── s2_alineacion.py
+│   ├── s2_bootstrap.py
+│   ├── s2_permutaciones.py
+│   ├── s2_correlaciones.py
+│   ├── s2_montecarlo.py
+│   ├── s2_robustez.py
+│   ├── s2_visualizaciones.py
+│   └── s2_resultados.py
 ├── tests/
 │   ├── test_preparacion.py
 │   ├── test_inferencia.py
-│   └── test_validacion_s2.py
+│   ├── test_validacion_s2.py
+│   ├── test_modulos_s2.py
+│   ├── test_montecarlo_cobertura.py
+│   └── test_correlaciones_optimizadas.py
+├── tools/
+│   ├── actualizar_readme_s2.py
+│   └── verificar_cierre_s2.py
+├── docs/
+│   └── ARQUITECTURA_S2.md
 ├── requirements.txt
 └── README.md
 ```
 
 ### Responsabilidad de los módulos
 
-| Archivo | Responsabilidad principal |
+| Archivo | Responsabilidad |
 |---|---|
-| `src/carga.py` | Lectura y escritura de archivos CSV. |
-| `src/validacion.py` | Validación de esquema y auditoría de calidad. |
-| `src/transformacion.py` | Generación controlada de faltantes MCAR y registro de valores retirados. |
-| `src/estadistica_descriptiva.py` | Resúmenes numéricos, histogramas, diagramas de caja y frecuencias categóricas. |
-| `src/analisis_bivariado.py` | Correlación de Spearman, comparación por estado, tasas por categorías y gráfico hexbin. |
-| `src/inferencia.py` | Intervalos t de Student, prueba t de Welch, chi-cuadrado y tamaños del efecto. |
-| `src/validacion_s2.py` | Permutación de la diferencia de medias, diagnóstico de cuantiles y diferencia de medias recortadas para S2. |
-| `tests/test_preparacion.py` | Pruebas del esquema, conservación del original y reproducibilidad MCAR. |
-| `tests/test_inferencia.py` | Pruebas de intervalos con faltantes, Welch y chi-cuadrado sobre datos sintéticos. |
-| `tests/test_validacion_s2.py` | Cuatro pruebas de permutación reproducible, recorte, diagnóstico de cuantiles y validación de grupos, ejecutadas con pytest. |
-| `notebooks/sumativa_1.ipynb` | Orquestación del análisis, figuras, salidas e interpretaciones. |
-| `reports/Informe_Sumativa_1_Grupo_7_Formato_Institucional_UNAB.pdf` | Informe técnico institucional de la Sumativa 1. |
-| `notebooks/sumativa_2.ipynb` | Validación mediante bootstrap, permutación, Monte Carlo y análisis de robustez. |
-| `data/processed/resultados_validos_s2.json` | Resultados estadísticos validados y recomendaciones metodológicas para S3. |
+| `src/carga.py`, `src/validacion.py`, `src/transformacion.py` | Carga, controles de datos y MCAR de S1. |
+| `src/estadistica_descriptiva.py`, `src/analisis_bivariado.py`, `src/inferencia.py` | Descripción, asociaciones e inferencia de S1. |
+| `src/s2_alineacion.py` | Reconstrucción y contraste de parámetros procedentes de S1. |
+| `src/s2_bootstrap.py` | Bootstrap de tres medias: percentil y BCa, con 10.000 remuestras por media. |
+| `src/s2_permutaciones.py` y `src/validacion_s2.py` | Permutaciones de hipótesis, diagnóstico de cuantiles y diferencia recortada. |
+| `src/s2_correlaciones.py` | Bootstrap de tres correlaciones de Spearman por pares completos, con tratamiento de empates. |
+| `src/s2_montecarlo.py` | Clase `SimuladorMonteCarlo`: lognormal/Gamma, convergencia, cobertura Welch y escenarios. |
+| `src/s2_robustez.py` | Jackknife, valores extremos, comparación de familias y medias recortadas. |
+| `src/s2_visualizaciones.py` | Gráficos utilizados en el notebook S2. |
+| `src/s2_resultados.py` | Consolidación de resultados, recomendaciones S3 y exportación JSON. |
+| `notebooks/sumativa_1.ipynb` | Informe computacional reproducible de S1. |
+| `notebooks/sumativa_2.ipynb` | Presentación de métodos, ejecuciones desde módulos, figuras e interpretación de S2. |
+| `tests/test_*.py` | 18 pruebas identificables: 6 de S1 y 12 adicionales de S2. |
+| `tools/verificar_cierre_s2.py` | Auditoría local de integridad, ejecución registrada, carpetas y pruebas. |
+
+La modularización separa cálculo, visualización y presentación. **No se cambió la
+metodología, el tamaño de remuestreo, las semillas ni los datos MCAR de S1.**
 
 ## 5. Preparación y trazabilidad de datos
 
@@ -189,9 +216,24 @@ python -m pip install pytest==9.1.1
 python -m pytest -q
 ```
 
-El proyecto contiene **diez pruebas automatizadas**: tres de preparación, tres de inferencia y cuatro de validación de S2. Revisan integridad del original, esquema, semilla MCAR, intervalos con valores faltantes, signo y tamaño del efecto de Welch, condiciones básicas de chi-cuadrado, permutación reproducible, medias recortadas, diagnóstico de cuantiles y presencia de ambos grupos. Las pruebas utilizan datos sintéticos para verificar funciones; complementan, pero **no reemplazan**, la ejecución integral de los notebooks sobre los datos reales.
+El proyecto contiene **18 pruebas automatizadas**: 3 de preparación S1,
+3 de inferencia S1, 4 de validación S2, 3 de integración de módulos,
+2 del simulador POO/cobertura de Welch y 3 de equivalencia/empates de Spearman.
+Las pruebas utilizan casos sintéticos y **no sustituyen** la ejecución integral
+sobre el CSV procesado de S1.
 
-`python -m unittest discover -s tests -v` ejecuta únicamente las seis pruebas de S1; para incluir las cuatro de S2 se utiliza pytest. Además, la última celda de S2 contiene **14 controles computacionales internos**, distintos de las diez pruebas automatizadas.
+Desde la raíz del repositorio:
+
+```powershell
+python -m pip install pytest
+python -m pytest -q
+python tools/verificar_cierre_s2.py --tests
+```
+
+La última celda del notebook S2 comprueba **15 controles computacionales**
+independientes de las pruebas unitarias. La cifra de 18 pruebas es la
+cantidad de funciones/métodos `test_*` actualmente versionados; se recomienda
+comprobar el resultado efectivo de `pytest` en cada entorno de entrega.
 
 ## 7. Metodología estadística
 
@@ -305,7 +347,7 @@ El análisis se desarrolla en `notebooks/sumativa_2.ipynb` e incluye:
 | Bootstrap no paramétrico | 10.000 remuestras para tres medias; IC percentil y BCa al 95 %, comparados con los IC clásicos de S1 |
 | Pruebas de permutación | 10.000 permutaciones por contraste para validar chi-cuadrado y comparar la diferencia de medias con Welch de S1 |
 | Estabilidad de correlaciones | Tres correlaciones de Spearman evaluadas mediante 10.000 remuestras bootstrap e IC al 95 % |
-| Simulación Monte Carlo | 10.000 iteraciones por escenario, utilizando parámetros estimados en S1 y evaluación de convergencia |
+| Simulación Monte Carlo | 10.000 iteraciones por escenario a partir de S1, convergencia, sensibilidad lognormal/Gamma y cobertura del IC Welch al 95 % |
 | Análisis de robustez | Jackknife, sensibilidad frente a descuentos altos, distribuciones alternativas, variación de parámetros y medias recortadas al 10 % por cola |
 | Preparación para S3 | Consolidación de resultados validados, limitaciones y recomendaciones metodológicas |
 
@@ -325,7 +367,7 @@ Las cifras proceden de [resultados_validos_s2.json](data/processed/resultados_va
 | Transporte y puntualidad | p clásico = 0,689549 y p de permutación = 0,689231; ambos mantienen la decisión de no rechazar H₀. Esto no demuestra independencia ni equivalencia. |
 | Diferencia de peso | Fuera de plazo menos a tiempo = −892,32 g; Welch y permutación rechazan H₀. El p de permutación ≈ 0,0001 está limitado por la resolución de 10.000 permutaciones; no equivale al p paramétrico de 4,14 × 10⁻¹⁶¹. |
 | Correlaciones | Peso–descuento: ρ = −0,3177, IC95 % [−0,3357; −0,2994]. Llamadas–costo: ρ = 0,2932, IC95 % [0,2731; 0,3126]. Valoración–peso: ρ = −0,0104, IC95 % [−0,0299; 0,0092]; su signo no queda determinado. |
-| Monte Carlo | Diferencia media lognormal = −892,84 g, con error Monte Carlo de 0,319 g. Se cumplen los controles de convergencia; las discrepancias de cuantiles impiden considerar validada la forma completa de las distribuciones. |
+| Monte Carlo | Diferencia media lognormal = −892,84 g (error MC de 0,319 g); cobertura Welch al 95 % de 95,35 % en lognormal y 94,94 % en Gamma. Converger y obtener cobertura nominal **no valida** los cuantiles completos de las distribuciones ni establece causalidad. |
 | Robustez y continuidad | La influencia individual sobre las medias es pequeña. Excluir 2.209 descuentos > 19 reduce su media de 13,373 a 5,975 y atenúa ρ peso–descuento a −0,0776. La diferencia recortada es −1.094,85 g: conserva el signo, pero cambia la magnitud. Mantener todos los registros en el análisis principal y revisar composición y variables operativas en S3. |
 
 ### Ejecución de la Sumativa 2
@@ -360,7 +402,7 @@ Los resultados validados servirán como referencia metodológica para la Sumativ
 | Tres intervalos de confianza del 95 % | Implementados |
 | Welch y chi-cuadrado, con tamaños del efecto | Implementados |
 | Discusión, supuestos y conclusiones | Incorporados al notebook |
-| Pruebas automatizadas (10 casos) | Disponibles en `tests/`; ejecutar con pytest |
+| Pruebas automatizadas (18 casos) | Disponibles en `tests/`; ejecutar con `python -m pytest -q` |
 | Notebook S1 con resultados actualizados | Disponible; 10 celdas de código en Notebook S1 con salidas consecutivas guardadas |
 | Informe técnico institucional S1 | Disponible en `reports/Informe_Sumativa_1_Grupo_7_Formato_Institucional_UNAB.pdf` |
 | Modelo predictivo e imputación | Fuera del alcance de Sumativa 1 |
@@ -371,17 +413,34 @@ Los resultados validados servirán como referencia metodológica para la Sumativ
 | Sumativa 2 — Análisis de robustez (jackknife, outliers y sensibilidad) | Completado |
 | Sumativa 2 — Consolidación de resultados validados para S3 | Completado |
 | Sumativa 2 — Generación de resultados_validos_s2.json | Completado |
-| Notebook S2 y controles internos | 18 celdas de código con salidas guardadas y 14 controles finales satisfactorios |
+| Notebook S2 y controles internos | 19 celdas de código ejecutadas (1–19) y 15 controles finales satisfactorios |
 | Informe técnico S2 en el repositorio | Pendiente de publicación en la versión revisada |
-| Carpetas de entrega S1 y S2 | Pendientes; no forman parte de la estructura actual |
+| Carpetas de entrega S1 y S2 | Índices de evidencias `S1/README.md` y `S2/README.md`, sin duplicar archivos canónicos |
 
 **Estado general:** Los análisis de las evaluaciones Sumativa 1 y Sumativa 2 se encuentran implementados. La segunda evaluación incorpora procedimientos de simulación y remuestreo para validar y profundizar los resultados inferenciales obtenidos en la primera, incluyendo análisis de sensibilidad y consolidación de resultados para la Sumativa 3.
 
 Los procedimientos y resultados se encuentran documentados en notebooks/sumativa_2.ipynb, mientras que los insumos validados para la siguiente fase se almacenan en data/processed/resultados_validos_s2.json.
 
-**Nota de reproducción:** Los notebooks S1 y S2 presentan diez y dieciocho celdas de código ejecutadas, respectivamente, con salidas guardadas sin errores. Para verificar la reproducibilidad de ambas evaluaciones en un entorno nuevo, ejecutar **Restart Kernel → Run All** en cada notebook, las diez pruebas con pytest y los catorce controles internos de S2; comprobar que se reproduzcan las tablas, figuras y archivos de resultados.
+**Nota de reproducción:** Los notebooks S1 y S2 presentan diez y diecinueve celdas de código ejecutadas, respectivamente, con salidas guardadas sin errores. Para verificar la reproducibilidad de ambas evaluaciones en un entorno nuevo, ejecutar **Restart Kernel → Run All** en cada notebook, las 18 pruebas con pytest y los 15 controles internos de S2; comprobar que se reproduzcan las tablas, figuras y archivos de resultados.
 
-**Cierre formal de S2:** La pauta solicita un PDF de máximo siete páginas, notebook `.ipynb`, enlace al repositorio, carpetas S1/S2 y archivo de resultados validados. La estructura y los estados anteriores corresponden al commit [94ccfba](https://github.com/jorge170102/ESTAD-STICA-COMPUTACIONAL---Grupo-7--MCDI501.202682.1914.EL.ON/tree/94ccfba75228cc92daa3881e1ae311004762413b), revisado el 18 de octubre de 2026. El PDF revisado tiene nueve páginas: requiere ajuste antes de la entrega. Completar los pendientes y verificar la carga de los tres componentes solicitados en Canvas.
+**Cierre formal de S2:** La pauta solicita PDF de máximo siete páginas, notebook ejecutable, enlace al repositorio, carpetas S1/S2 y archivo de resultados validados. A octubre de 2026, el notebook S2 modular registra 19 ejecuciones sin errores y 15 controles satisfactorios; el JSON está publicado. **El PDF de S2 permanece pendiente de publicación y entrega por el equipo**. El cumplimiento del límite de siete páginas debe comprobarse sobre la versión PDF definitiva.
+
+
+### Verificación de cierre y arquitectura modular (octubre de 2026)
+
+La Sumativa 2 separa cálculos estadísticos (`src/s2_*.py`), visualizaciones,
+clase `SimuladorMonteCarlo` y presentación (`notebooks/sumativa_2.ipynb`).
+El JSON consolidado se encuentra en [resultados_validos_s2.json](data/processed/resultados_validos_s2.json).
+La última ejecución publicada registra 19 celdas, 15 controles satisfactorios
+y escenarios con cobertura de Welch cercana al 95 % bajo los modelos simulados.
+
+- [Índice de evidencias S1](S1/README.md)
+- [Índice de evidencias S2](S2/README.md)
+- [Detalles de arquitectura](docs/ARQUITECTURA_S2.md)
+
+**Comprobación local:** `python tools/verificar_cierre_s2.py --tests`.
+Este comando muestra advertencia mientras falte el PDF final de S2; por acuerdo
+del equipo, no se incluye ni modifica en esta actualización documental.
 
 ## 11. Equipo y control de versiones
 
