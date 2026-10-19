@@ -5,11 +5,11 @@
   "procedencia": {
     "repositorio": "https://github.com/jorge170102/ESTAD-STICA-COMPUTACIONAL---Grupo-7--MCDI501.202682.1914.EL.ON",
     "commit_referencia_s1": "0c7ffaca4e45525ab434f6c9305128221e4ef1c4",
-    "commit_en_ejecucion": "9cb222274ca1ef0ff834f13f7e557029e164caa0",
+    "commit_en_ejecucion": "1d8d7f56d4880a012f02179b20a8f3453d7a5bf5",
     "notebook_s1": "notebooks/sumativa_1.ipynb",
     "datos": "data/processed/ecommerce_mcar.csv",
     "sha256_datos_lf": "1a7f8a5c4da839e481ff2dc93e30c7f64205407a2bd62ae94be4265027ca0714",
-    "fecha_utc": "2026-10-19T22:36:05.713331+00:00",
+    "fecha_utc": "2026-10-19T22:49:07.070479+00:00",
     "versiones": {
       "Python": "3.14.8",
       "NumPy": "2.5.3",
@@ -693,7 +693,7 @@
     "Simulación calibrada con S1: convergencia y cobertura condicional no implican validez externa del modelo"
   ],
   "entrega_formal_pendiente": [
-    "Ejecutar desde cero y actualizar este JSON en el repositorio oficial",
-    "Publicar los entregables y el JSON en GitHub y presentar el enlace en Canvas"
+    "Publicar el informe PDF de S2 en el repositorio",
+    "Entregar PDF, notebook y enlace GitHub en Canvas"
   ]
 }

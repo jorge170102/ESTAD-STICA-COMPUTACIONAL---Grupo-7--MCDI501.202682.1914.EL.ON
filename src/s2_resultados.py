@@ -141,8 +141,10 @@ def guardar_resultados(raiz, ruta_salida, datos):
             "Faltantes MCAR artificiales; incertidumbre condicionada a datos disponibles",
             "Unidad del descuento sin confirmar", "IC y pruebas individuales sin ajuste conjunto",
             "Simulación calibrada con S1: convergencia y cobertura condicional no implican validez externa del modelo"],
-        "entrega_formal_pendiente": ["Ejecutar desde cero y actualizar este JSON en el repositorio oficial",
-            "Publicar los entregables y el JSON en GitHub y presentar el enlace en Canvas"],
+        "entrega_formal_pendiente": [
+            "Publicar el informe PDF de S2 en el repositorio",
+            "Entregar PDF, notebook y enlace GitHub en Canvas"
+        ],
     }
 
     # allow_nan=False impide exportar números no válidos como si fueran resultados.
