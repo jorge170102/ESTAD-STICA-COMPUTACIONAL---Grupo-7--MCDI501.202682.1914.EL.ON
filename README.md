@@ -33,6 +33,7 @@ El trabajo utiliza Python y Jupyter Notebook, con funciones reutilizables en `sr
 5. Estimar tres medias poblacionales con intervalos de confianza del 95 %.
 6. Contrastar dos hipótesis estadísticas pertinentes al estado de entrega.
 7. Comunicar los resultados, supuestos, limitaciones y conclusiones en un notebook y un informe técnico.
+8. Validar los resultados de S1 mediante bootstrap, permutaciones, Monte Carlo y análisis de robustez, y documentar los insumos para S3.
 
 ## 3. Dataset y diccionario de variables
 
@@ -87,13 +88,14 @@ El trabajo utiliza Python y Jupyter Notebook, con funciones reutilizables en `sr
 │   ├── transformacion.py
 │   ├── estadistica_descriptiva.py
 │   ├── analisis_bivariado.py
-│   └── inferencia.py
+│   ├── inferencia.py
+│   └── validacion_s2.py
 ├── tests/
 │   ├── test_preparacion.py
-│   └── test_inferencia.py
+│   ├── test_inferencia.py
+│   └── test_validacion_s2.py
 ├── requirements.txt
-├── README.md
-└── hola.py                  # Archivo auxiliar histórico; no participa en el flujo analítico
+└── README.md
 ```
 
 ### Responsabilidad de los módulos
@@ -106,10 +108,12 @@ El trabajo utiliza Python y Jupyter Notebook, con funciones reutilizables en `sr
 | `src/estadistica_descriptiva.py` | Resúmenes numéricos, histogramas, diagramas de caja y frecuencias categóricas. |
 | `src/analisis_bivariado.py` | Correlación de Spearman, comparación por estado, tasas por categorías y gráfico hexbin. |
 | `src/inferencia.py` | Intervalos t de Student, prueba t de Welch, chi-cuadrado y tamaños del efecto. |
+| `src/validacion_s2.py` | Permutación de la diferencia de medias, diagnóstico de cuantiles y diferencia de medias recortadas para S2. |
 | `tests/test_preparacion.py` | Pruebas del esquema, conservación del original y reproducibilidad MCAR. |
 | `tests/test_inferencia.py` | Pruebas de intervalos con faltantes, Welch y chi-cuadrado sobre datos sintéticos. |
+| `tests/test_validacion_s2.py` | Cuatro pruebas de permutación reproducible, recorte, diagnóstico de cuantiles y validación de grupos, ejecutadas con pytest. |
 | `notebooks/sumativa_1.ipynb` | Orquestación del análisis, figuras, salidas e interpretaciones. |
-| `reports/Informe_Sumativa_1_Grupo_7_Formato_Institucional_UNAB.pdf` | Informe técnico institucional de la Sumativa 1, máximo ocho páginas. |
+| `reports/Informe_Sumativa_1_Grupo_7_Formato_Institucional_UNAB.pdf` | Informe técnico institucional de la Sumativa 1. |
 | `notebooks/sumativa_2.ipynb` | Validación mediante bootstrap, permutación, Monte Carlo y análisis de robustez. |
 | `data/processed/resultados_validos_s2.json` | Resultados estadísticos validados y recomendaciones metodológicas para S3. |
 
@@ -141,7 +145,7 @@ El análisis descriptivo e inferencial usa el DataFrame preparado (`df_eda`), no
 - Git y Visual Studio Code con extensiones de Python/Jupyter, o Jupyter Notebook.
 - Dependencias disponibles en `requirements.txt`.
 
-> Las dependencias están declaradas **sin versiones fijadas**. Las salidas guardadas registran pandas 3.0.6 y NumPy 2.5.3; otro entorno puede tener versiones diferentes. Para reproducibilidad estricta, conviene documentar también las versiones realmente instaladas.
+> `requirements.txt` **fija versiones** de las dependencias directas. Las salidas de S2 registran NumPy 2.5.3, pandas 3.0.6, SciPy 1.17.0 y Matplotlib 3.11.2. Para reproducibilidad estricta, registrar también el intérprete y las versiones realmente instaladas. `pytest` no está incluido en ese archivo; su instalación para ejecutar toda la suite se indica abajo.
 
 ### Instalación (Windows PowerShell)
 
@@ -165,23 +169,29 @@ Si `py -3.14` no está disponible, utiliza `python -m venv .venv` con un intérp
 3. Ejecutar **Restart Kernel → Run All** en orden, desde la preparación hasta las conclusiones.
 4. Comprobar que las celdas se ejecuten sin errores y guardar el notebook con sus salidas actualizadas.
 
+Para reproducir el flujo completo desde el CSV original, ejecutar primero S1 y después S2. S2 también puede ejecutarse directamente con el CSV MCAR publicado: comprueba su huella antes de calcular resultados y requiere `src/validacion_s2.py`.
+
 También se puede ejecutar sin sobrescribir el notebook original:
 
 ```powershell
 jupyter nbconvert --to notebook --execute notebooks/sumativa_1.ipynb --output sumativa_1_verificado.ipynb --output-dir notebooks --ExecutePreprocessor.timeout=600
+jupyter nbconvert --to notebook --execute notebooks/sumativa_2.ipynb --output sumativa_2_verificado.ipynb --output-dir notebooks --ExecutePreprocessor.timeout=900
 ```
 
-> **Importante:** la celda de preparación vuelve a generar `data/processed/ecommerce_mcar.csv` y la auditoría a partir del original. Se usa la semilla 42 para reproducir el mismo mecanismo; comprueba el estado de Git antes de registrar archivos generados.
+> **Importante:** la celda de preparación de S1 vuelve a generar `data/processed/ecommerce_mcar.csv` y la auditoría a partir del original, con semilla 42. S2 conserva esos datos y actualiza `data/processed/resultados_validos_s2.json`. Los comandos anteriores conservan los notebooks originales, pero sí generan esos archivos derivados; comprueba el estado de Git antes de registrarlos.
 
 ### Pruebas automatizadas
 
 Desde la raíz del repositorio:
 
 ```powershell
-python -m unittest discover -s tests -v
+python -m pip install pytest==9.1.1
+python -m pytest -q
 ```
 
-El proyecto contiene **seis pruebas unitarias**: tres de preparación y tres de inferencia. Revisan integridad del original, esquema, semilla MCAR, intervalos con valores faltantes, signo y tamaño del efecto de Welch, y condiciones básicas de chi-cuadrado. Las pruebas inferenciales utilizan un conjunto sintético diseñado para verificar funciones; complementan, pero **no reemplazan**, la ejecución integral del notebook sobre los datos reales.
+El proyecto contiene **diez pruebas automatizadas**: tres de preparación, tres de inferencia y cuatro de validación de S2. Revisan integridad del original, esquema, semilla MCAR, intervalos con valores faltantes, signo y tamaño del efecto de Welch, condiciones básicas de chi-cuadrado, permutación reproducible, medias recortadas, diagnóstico de cuantiles y presencia de ambos grupos. Las pruebas utilizan datos sintéticos para verificar funciones; complementan, pero **no reemplazan**, la ejecución integral de los notebooks sobre los datos reales.
+
+`python -m unittest discover -s tests -v` ejecuta únicamente las seis pruebas de S1; para incluir las cuatro de S2 se utiliza pytest. Además, la última celda de S2 contiene **14 controles computacionales internos**, distintos de las diez pruebas automatizadas.
 
 ## 7. Metodología estadística
 
@@ -293,15 +303,30 @@ El análisis se desarrolla en `notebooks/sumativa_2.ipynb` e incluye:
 | Procedimiento | Implementación |
 |---|---|
 | Bootstrap no paramétrico | 10.000 remuestras para tres medias; IC percentil y BCa al 95 %, comparados con los IC clásicos de S1 |
-| Pruebas de permutación | 10.000 permutaciones para contrastar las pruebas de chi-cuadrado y diferencia de medias realizadas en S1 |
+| Pruebas de permutación | 10.000 permutaciones por contraste para validar chi-cuadrado y comparar la diferencia de medias con Welch de S1 |
 | Estabilidad de correlaciones | Tres correlaciones de Spearman evaluadas mediante 10.000 remuestras bootstrap e IC al 95 % |
 | Simulación Monte Carlo | 10.000 iteraciones por escenario, utilizando parámetros estimados en S1 y evaluación de convergencia |
-| Análisis de robustez | Jackknife, sensibilidad frente a outliers, distribuciones alternativas y variación de parámetros |
+| Análisis de robustez | Jackknife, sensibilidad frente a descuentos altos, distribuciones alternativas, variación de parámetros y medias recortadas al 10 % por cola |
 | Preparación para S3 | Consolidación de resultados validados, limitaciones y recomendaciones metodológicas |
 
 **Trazabilidad:** Los procedimientos utilizan los parámetros, intervalos de confianza, pruebas de hipótesis y correlaciones obtenidos en la Sumativa 1. Las comparaciones permiten evaluar la concordancia entre los resultados paramétricos originales y los métodos computacionales.
 
 **Resultados para la Sumativa 3:** El notebook genera `data/processed/resultados_validos_s2.json`, que contiene los resultados estadísticos validados y recomendaciones metodológicas para la siguiente fase.
+
+**Referencia de datos:** S2 identifica la línea base de S1 mediante el commit `0c7ffaca4e45525ab434f6c9305128221e4ef1c4` y la huella SHA-256 del CSV MCAR, normalizando saltos de línea a LF: `1a7f8a5c4da839e481ff2dc93e30c7f64205407a2bd62ae94be4265027ca0714`. El JSON registra fecha, versiones, semillas, tamaños de remuestreo y el commit disponible al ejecutar. Ese commit identifica `HEAD`, pero no acredita por sí solo que no hubiera cambios sin confirmar.
+
+### Principales resultados validados de S2
+
+Las cifras proceden de [resultados_validos_s2.json](data/processed/resultados_validos_s2.json) y se desarrollan en [sumativa_2.ipynb](notebooks/sumativa_2.ipynb).
+
+| Resultado | Evidencia e interpretación |
+|---|---|
+| Tres medias e intervalos | Los anchos BCa cambian −1,23 % en peso, −1,19 % en costo y +0,94 % en descuento frente a los IC clásicos de S1. La concordancia se interpreta bajo los supuestos de muestreo e independencia. |
+| Transporte y puntualidad | p clásico = 0,689549 y p de permutación = 0,689231; ambos mantienen la decisión de no rechazar H₀. Esto no demuestra independencia ni equivalencia. |
+| Diferencia de peso | Fuera de plazo menos a tiempo = −892,32 g; Welch y permutación rechazan H₀. El p de permutación ≈ 0,0001 está limitado por la resolución de 10.000 permutaciones; no equivale al p paramétrico de 4,14 × 10⁻¹⁶¹. |
+| Correlaciones | Peso–descuento: ρ = −0,3177, IC95 % [−0,3357; −0,2994]. Llamadas–costo: ρ = 0,2932, IC95 % [0,2731; 0,3126]. Valoración–peso: ρ = −0,0104, IC95 % [−0,0299; 0,0092]; su signo no queda determinado. |
+| Monte Carlo | Diferencia media lognormal = −892,84 g, con error Monte Carlo de 0,319 g. Se cumplen los controles de convergencia; las discrepancias de cuantiles impiden considerar validada la forma completa de las distribuciones. |
+| Robustez y continuidad | La influencia individual sobre las medias es pequeña. Excluir 2.209 descuentos > 19 reduce su media de 13,373 a 5,975 y atenúa ρ peso–descuento a −0,0776. La diferencia recortada es −1.094,85 g: conserva el signo, pero cambia la magnitud. Mantener todos los registros en el análisis principal y revisar composición y variables operativas en S3. |
 
 ### Ejecución de la Sumativa 2
 
@@ -335,9 +360,9 @@ Los resultados validados servirán como referencia metodológica para la Sumativ
 | Tres intervalos de confianza del 95 % | Implementados |
 | Welch y chi-cuadrado, con tamaños del efecto | Implementados |
 | Discusión, supuestos y conclusiones | Incorporados al notebook |
-| Pruebas automatizadas (6 casos) | Disponibles en `tests/` |
+| Pruebas automatizadas (10 casos) | Disponibles en `tests/`; ejecutar con pytest |
 | Notebook S1 con resultados actualizados | Disponible; 10 celdas de código en Notebook S1 con salidas consecutivas guardadas |
-| Informe técnico institucional | Disponible en `reports/Informe_Sumativa_1_Grupo_7_Formato_Institucional_UNAB.pdf` |
+| Informe técnico institucional S1 | Disponible en `reports/Informe_Sumativa_1_Grupo_7_Formato_Institucional_UNAB.pdf` |
 | Modelo predictivo e imputación | Fuera del alcance de Sumativa 1 |
 | Sumativa 2 — Validación bootstrap de IC (percentil y BCa) | Completado |
 | Sumativa 2 — Validación de pruebas mediante permutación | Completado |
@@ -346,12 +371,17 @@ Los resultados validados servirán como referencia metodológica para la Sumativ
 | Sumativa 2 — Análisis de robustez (jackknife, outliers y sensibilidad) | Completado |
 | Sumativa 2 — Consolidación de resultados validados para S3 | Completado |
 | Sumativa 2 — Generación de resultados_validos_s2.json | Completado |
+| Notebook S2 y controles internos | 18 celdas de código con salidas guardadas y 14 controles finales satisfactorios |
+| Informe técnico S2 en el repositorio | Pendiente de publicación en la versión revisada |
+| Carpetas de entrega S1 y S2 | Pendientes; no forman parte de la estructura actual |
 
-**Estado general:** Las evaluaciones Sumativa 1 y Sumativa 2 se encuentran implementadas. La segunda evaluación incorpora procedimientos de simulación y remuestreo para validar y profundizar los resultados inferenciales obtenidos en la primera, incluyendo análisis de sensibilidad y consolidación de resultados para la Sumativa 3.
+**Estado general:** Los análisis de las evaluaciones Sumativa 1 y Sumativa 2 se encuentran implementados. La segunda evaluación incorpora procedimientos de simulación y remuestreo para validar y profundizar los resultados inferenciales obtenidos en la primera, incluyendo análisis de sensibilidad y consolidación de resultados para la Sumativa 3.
 
 Los procedimientos y resultados se encuentran documentados en notebooks/sumativa_2.ipynb, mientras que los insumos validados para la siguiente fase se almacenan en data/processed/resultados_validos_s2.json.
 
-**Nota de reproducción:** El notebook de la Sumativa 1 presenta diez celdas de código ejecutadas, con salidas guardadas sin errores. Por su parte, el notebook de la Sumativa 2 incorpora los procedimientos de simulación y remuestreo documentados en este repositorio. Para verificar la reproducibilidad de ambas evaluaciones en un entorno nuevo, se recomienda ejecutar **Restart Kernel → Run All** en cada notebook y comprobar que se reproduzcan correctamente las tablas, figuras y archivos de resultados.
+**Nota de reproducción:** Los notebooks S1 y S2 presentan diez y dieciocho celdas de código ejecutadas, respectivamente, con salidas guardadas sin errores. Para verificar la reproducibilidad de ambas evaluaciones en un entorno nuevo, ejecutar **Restart Kernel → Run All** en cada notebook, las diez pruebas con pytest y los catorce controles internos de S2; comprobar que se reproduzcan las tablas, figuras y archivos de resultados.
+
+**Cierre formal de S2:** La pauta solicita un PDF de máximo siete páginas, notebook `.ipynb`, enlace al repositorio, carpetas S1/S2 y archivo de resultados validados. La estructura y los estados anteriores corresponden al commit [94ccfba](https://github.com/jorge170102/ESTAD-STICA-COMPUTACIONAL---Grupo-7--MCDI501.202682.1914.EL.ON/tree/94ccfba75228cc92daa3881e1ae311004762413b), revisado el 18 de octubre de 2026. El PDF revisado tiene nueve páginas: requiere ajuste antes de la entrega. Completar los pendientes y verificar la carga de los tres componentes solicitados en Canvas.
 
 ## 11. Equipo y control de versiones
 
@@ -376,6 +406,7 @@ git push origin main
 6. [SciPy — Statistical functions](https://docs.scipy.org/doc/scipy/reference/stats.html).
 7. [Matplotlib — Documentation](https://matplotlib.org/stable/).
 8. [Seaborn — Documentation](https://seaborn.pydata.org/).
+9. Universidad Andrés Bello. (2026). *Sumativa 2. Informe 3: instrucciones y rúbrica, Fase 3* [Material docente de MCDI501; seis criterios, 87 puntos].
 
 ---
 
