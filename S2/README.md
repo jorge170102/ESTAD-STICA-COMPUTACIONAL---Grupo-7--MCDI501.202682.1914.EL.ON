@@ -16,7 +16,7 @@
 | Sensibilidad y robustez | [`s2_robustez.py`](../src/s2_robustez.py), [Notebook S2](../notebooks/sumativa_2.ipynb) |
 | Resultados validados para S3 | [JSON oficial S2](../data/processed/resultados_validos_s2.json), [`s2_resultados.py`](../src/s2_resultados.py) |
 | Pruebas unitarias | [Suite `tests/`](../tests/), 18 casos identificados: S1 + S2 |
-| Informe técnico institucional | Informe_Sumativa_2_Grupo_7.pdf disponible en `reports/` . |
+| Informe técnico institucional | (../reports/Informe_Sumativa_2_Grupo_7.pdf) . |
 
 ## Reproducibilidad
 
