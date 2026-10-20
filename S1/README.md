@@ -9,7 +9,7 @@ desactualizadas ni romper las importaciones de Python.
 ## Evidencias
 
 - [Notebook S1 ejecutable](../notebooks/sumativa_1.ipynb).
-- [Informe institucional S1 (PDF)](../reports/Informe_Sumativa_1_Grupo_7_Formato_Institucional_UNAB.pdf).
+- [Informe institucional S1 (PDF)](../reports/Informe_Sumativa_1_Grupo_7.pdf).
 - [Datos originales](../data/raw/customer_analytics.csv).
 - [Datos procesados S1 con MCAR](../data/processed/ecommerce_mcar.csv).
 - [Auditoría de valores retirados](../data/processed/valores_originales_mcar.csv).
