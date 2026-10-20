@@ -5,16 +5,16 @@
   "procedencia": {
     "repositorio": "https://github.com/jorge170102/ESTAD-STICA-COMPUTACIONAL---Grupo-7--MCDI501.202682.1914.EL.ON",
     "commit_referencia_s1": "0c7ffaca4e45525ab434f6c9305128221e4ef1c4",
-    "commit_en_ejecucion": "d1300774d736657a7e4e76bd4bbfa8e3eb59e3ae",
+    "commit_en_ejecucion": "c7a0bbd251fd7b8101312e76c4feb90e254e2c05",
     "notebook_s1": "notebooks/sumativa_1.ipynb",
     "datos": "data/processed/ecommerce_mcar.csv",
     "sha256_datos_lf": "1a7f8a5c4da839e481ff2dc93e30c7f64205407a2bd62ae94be4265027ca0714",
-    "fecha_utc": "2026-10-19T23:11:32.993525+00:00",
+    "fecha_utc": "2026-10-20T03:38:50.591400+00:00",
     "versiones": {
-      "Python": "3.14.8",
+      "Python": "3.14.7",
       "NumPy": "2.5.3",
       "pandas": "3.0.6",
-      "SciPy": "1.17.0",
+      "SciPy": "1.18.1",
       "Matplotlib": "3.11.2"
     },
     "bootstrap_por_analisis": 10000,
@@ -150,7 +150,7 @@
       139.80033365359486
     ],
     "p_permutacion": 9.999000099990002e-05,
-    "p_welch_s1": 4.136835505513428e-161,
+    "p_welch_s1": 4.136835505513429e-161,
     "extremos": 0,
     "permutaciones": 10000,
     "semilla": 202,
@@ -214,7 +214,7 @@
       -955.6106446354922,
       -829.0210516332929
     ],
-    "p_welch_s1": 4.136835505513428e-161,
+    "p_welch_s1": 4.136835505513429e-161,
     "error_estandar_s1": 32.289299359406584,
     "modelo_principal": "Lognormal por grupo ajustada por momentos de S1",
     "resultado_principal": {
@@ -392,18 +392,18 @@
         "probabilidad": 0.25,
         "cuantil_empirico_g": 1735.5,
         "cuantil_lognormal_g": 2167.035792005861,
-        "cuantil_gamma_g": 2119.8465564407534,
+        "cuantil_gamma_g": 2119.846556440754,
         "error_abs_lognormal_g": 431.5357920058609,
-        "error_abs_gamma_g": 384.3465564407534
+        "error_abs_gamma_g": 384.34655644075383
       },
       {
         "grupo": "Fuera de plazo",
         "probabilidad": 0.5,
         "cuantil_empirico_g": 3225.0,
         "cuantil_lognormal_g": 2949.394031953399,
-        "cuantil_gamma_g": 3024.3508103116055,
+        "cuantil_gamma_g": 3024.350810311605,
         "error_abs_lognormal_g": 275.605968046601,
-        "error_abs_gamma_g": 200.64918968839447
+        "error_abs_gamma_g": 200.64918968839493
       },
       {
         "grupo": "Fuera de plazo",
@@ -609,7 +609,7 @@
         "escenario": 5.975085324232082,
         "ic_base_inf": 13.07211913965579,
         "ic_base_sup": 13.683592913926411,
-        "ic_escenario_inf": 5.901697223521303,
+        "ic_escenario_inf": 5.901697223521302,
         "ic_escenario_sup": 6.04813038078764,
         "cambio": -7.398130422653998
       },

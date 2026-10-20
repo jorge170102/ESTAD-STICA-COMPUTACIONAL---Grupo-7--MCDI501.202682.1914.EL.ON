@@ -16,7 +16,7 @@
 | Sensibilidad y robustez | [`s2_robustez.py`](../src/s2_robustez.py), [Notebook S2](../notebooks/sumativa_2.ipynb) |
 | Resultados validados para S3 | [JSON oficial S2](../data/processed/resultados_validos_s2.json), [`s2_resultados.py`](../src/s2_resultados.py) |
 | Pruebas unitarias | [Suite `tests/`](../tests/), 18 casos identificados: S1 + S2 |
-| Informe técnico institucional | **Pendiente: los compañeros lo están afinando**. Subir a `reports/` cuando esté aprobado, en PDF de **máximo 7 páginas**. |
+| Informe técnico institucional | Informe_Sumativa_2_Grupo_7_UNAB.pdf disponible en `reports/` . |
 
 ## Reproducibilidad
 
@@ -36,10 +36,23 @@ La referencia de S1 se comprueba mediante la huella del CSV procesado. Los
 intervalos por Monte Carlo corresponden a modelos condicionados a parámetros
 de S1 y **no prueban causalidad**.
 
-## Pendientes de la entrega
+## Informe técnico de la Sumativa 2
 
-- [ ] Adjuntar el PDF definitivo S2 de máximo 7 páginas cuando el equipo lo termine.
-- [ ] Presentar en Canvas el PDF, el notebook y el enlace al repositorio según la pauta.
+El informe técnico definitivo de la Sumativa 2 se encuentra disponible en:
+
+reports/Informe_Sumativa_2_Grupo_7_UNAB.pdf
+
+El documento cumple con la extensión máxima de siete páginas establecida en las instrucciones de evaluación y presenta los principales resultados de validación mediante bootstrap, pruebas de permutación, estabilidad de correlaciones, simulación Monte Carlo y análisis de robustez.
+
+Las evidencias computacionales se encuentran en:
+
+notebooks/sumativa_2.ipynb: notebook con 19 celdas de código y 15 controles internos satisfactorios.
+
+data/processed/resultados_validos_s2.json: resultados consolidados y recomendaciones para la Sumativa 3.
+
+src/: módulos de implementación de los procedimientos estadísticos.
+
+Los resultados pueden reproducirse utilizando las semillas establecidas y el conjunto de datos procesado en la Sumativa 1.
 
 *No duplicar notebook ni JSON dentro de S2*: los enlaces apuntan a los archivos
 que se ejecutan y mantienen efectivamente.
