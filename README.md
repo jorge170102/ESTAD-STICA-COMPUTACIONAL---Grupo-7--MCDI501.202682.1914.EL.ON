@@ -14,7 +14,7 @@
 
 ## 1. Descripción del proyecto
 
-Este repositorio documenta el desarrollo de las evaluaciones Sumativa 1 (Fase 2) y Sumativa 2 (Fase 3) del proyecto de **Estadística Computacional** del Grupo 7. Se utiliza el dataset público **E-Commerce Shipping / Customer Analytics** para estudiar las características de los envíos, analizar su asociación con la puntualidad de entrega y evaluar la estabilidad de los resultados inferenciales mediante técnicas de simulación y remuestreo.
+Este repositorio documenta el desarrollo integrado de las evaluaciones Sumativa 1 (Fase 2), Sumativa 2 (Fase 3) y Sumativa 3 (Fase 4) del proyecto de **Estadística Computacional** del Grupo 7. A partir del conjunto de datos **E-Commerce Shipping / Customer Analytics**, se desarrolla un proceso analítico que comprende estadística descriptiva e inferencial, validación mediante simulación y remuestreo, tratamiento de datos faltantes y modelamiento predictivo mediante regresión logística.
 
 El trabajo utiliza Python y Jupyter Notebook, con funciones reutilizables en `src/`, controles automatizados en `tests/`, conservación de los datos originales y un informe técnico en `reports/`. El propósito es obtener resultados **trazables, interpretables y reproducibles**; las asociaciones encontradas no se interpretan como relaciones causales.
 
