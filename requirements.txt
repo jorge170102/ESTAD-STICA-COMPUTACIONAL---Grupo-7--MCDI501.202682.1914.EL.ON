@@ -10,6 +10,11 @@ pandas==3.0.6
 
 # Estadística inferencial
 scipy==1.17.0
+statsmodels
+patsy
+
+# Machine learning y preprocesamiento
+scikit-learn
 
 # Visualización
 matplotlib==3.11.2
@@ -21,3 +26,5 @@ jupyterlab==4.6.4
 notebook==7.6.3
 nbconvert==7.17.1
 
+# Pruebas automatizadas
+pytest

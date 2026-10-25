@@ -3,7 +3,7 @@
 **Universidad Andrés Bello (UNAB)**  
 **Magíster en Ciencia de Datos e Inteligencia Artificial**  
 **Asignatura:** Estadística Computacional (`MCDI501`)  
-**Evaluaciones:** Sumativa 1 (Fase 2) y Sumativa 2 (Fase 3) — Estadística inferencial, simulación y remuestreo
+**Evaluaciones:** Sumativa 1 (Fase 2), Sumativa 2 (Fase 3) y Sumativa 3 (Fase 4) — Estadística inferencial, simulación, remuestreo y modelamiento predictivo.
 **Periodo:** Octubre de 2026
 
 **Integrantes:** Felipe Palma Barrientos · Vicente Aguila Rojas · Cristian Grandon Grandon · Jorge Gutierrez Jaramillo
@@ -77,6 +77,8 @@ copiarlos ni producir versiones divergentes.
 │   └── README.md                       # Índice de evidencias S1
 ├── S2/
 │   └── README.md                       # Índice de evidencias S2
+├── S3/
+│   └── README.md                       # Índice de evidencias S2
 ├── data/
 │   ├── raw/customer_analytics.csv
 │   └── processed/
@@ -85,7 +87,8 @@ copiarlos ni producir versiones divergentes.
 │       └── resultados_validos_s2.json
 ├── notebooks/
 │   ├── sumativa_1.ipynb
-│   └── sumativa_2.ipynb
+│   ├── sumativa_2.ipynb
+│   └── sumativa_3.ipynb
 ├── reports/
 │   └── Informe_Sumativa_1_Grupo_7_Formato_Institucional_UNAB.pdf
 │       # Informe S2: pendiente de publicación por el equipo
@@ -138,6 +141,7 @@ copiarlos ni producir versiones divergentes.
 | `src/s2_resultados.py` | Consolidación de resultados, recomendaciones S3 y exportación JSON. |
 | `notebooks/sumativa_1.ipynb` | Informe computacional reproducible de S1. |
 | `notebooks/sumativa_2.ipynb` | Presentación de métodos, ejecuciones desde módulos, figuras e interpretación de S2. |
+| `notebooks/sumativa_3.ipynb` | Modelamiento e integración de los resultados de S1 y S2. |
 | `tests/test_*.py` | 18 pruebas identificables: 6 de S1 y 12 adicionales de S2. |
 | `tools/verificar_cierre_s2.py` | Auditoría local de integridad, ejecución registrada, carpetas y pruebas. |
 
@@ -466,6 +470,16 @@ git push origin main
 7. [Matplotlib — Documentation](https://matplotlib.org/stable/).
 8. [Seaborn — Documentation](https://seaborn.pydata.org/).
 9. Universidad Andrés Bello. (2026). *Sumativa 2. Informe 3: instrucciones y rúbrica, Fase 3* [Material docente de MCDI501; seis criterios, 87 puntos].
+
+## Sumativa 3 — Modelamiento e integración final
+
+La Sumativa 3 integra los resultados de las fases anteriores mediante imputación por regresión lineal múltiple, clasificación logística, evaluación predictiva, diagnósticos estadísticos, bootstrap de coeficientes y análisis de sensibilidad frente a distintas estrategias de tratamiento de valores faltantes.
+
+Se implementaron tres procedimientos de construcción de modelos logísticos: selección informada por S1/S2, selección progresiva mediante razón de verosimilitudes y selección mediante AIC. Los dos últimos identificaron la misma especificación, propuesta como modelo final por su menor AIC en entrenamiento y la concordancia entre procedimientos.
+
+El análisis bootstrap se desarrolló con 2.000 réplicas por especificación, mientras que la comparación de estrategias de tratamiento de faltantes mostró diferencias predictivas reducidas y asociaciones relativamente estables.
+
+La documentación metodológica, los resultados y las limitaciones se presentan en [S3/README.md](S3/README.md). El notebook maestro se encuentra en [notebooks/sumativa_3.ipynb](notebooks/sumativa_3.ipynb).
 
 ---
 
